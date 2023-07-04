@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Todo = require('../../models/todo.js')
+const User = require('../../models/user.js')
 
 // register
 router.get('/register', (req, res) => {
@@ -9,8 +10,27 @@ router.get('/register', (req, res) => {
 
 // data: register
 router.post('/register', (req, res) => {
-
-  redirect('/')
+  const { name, email, password, confirmPassword} = req.body
+  User.findOne({ email }).then(user => {
+    if (user) {
+      console.log('this user already exists.')
+      res.render('register', {
+        name,
+        email, 
+        password,
+        confirmPassword
+      }) 
+    } else {
+      return User.create({
+        name,
+        email,
+        password
+      })
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err))
+    }
+  })
+  .catch(err => console.log(err))
 })
 
 // login

@@ -1,5 +1,6 @@
 const db = require('../../config/mongoose')
 const Todo = require('../todo')
+const User = require('../user')
 
 db.on('error', () => {
   // console.log('mongodb error!')
