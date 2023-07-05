@@ -4,9 +4,10 @@ const session = require('express-session')
 const exhbs = require('express-handlebars')
 const methodOverride = require('method-override')
 
-
 const routes = require('./routes')
 require('./config/mongoose')
+
+const usePassport = require('./config/passport')
 
 const port = 3000
 
@@ -23,10 +24,8 @@ app.use(session({
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }))
 
+usePassport(app)
 app.use(routes)
-
-
-
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)

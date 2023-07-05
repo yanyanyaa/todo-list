@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Todo = require('../../models/todo.js')
 const User = require('../../models/user.js')
+const passport = require('passport')
 
 // register
 router.get('/register', (req, res) => {
@@ -40,16 +41,16 @@ router.get('/login', (req, res) => {
 })
 
 // data: login
-router.post('/login', (req, res) => {
-
-  redirect('/')
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 
 // data: logout
-router.post('/logout', (req, res) => {
-
-  redirect('/')
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/users/login')
 })
 
 module.exports = router
