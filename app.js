@@ -18,7 +18,7 @@ app.set('view engine', 'hbs')
 app.use(session({
   secret: 'ThisIsMySecret', 
   resave: false,
-  saveUninitialixed: true
+  saveUninitialized: true
 }))
 
 app.use(methodOverride('_method'))
