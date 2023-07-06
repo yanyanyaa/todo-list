@@ -1,9 +1,17 @@
-<p>
-<input type="checkbox" name="isDone" {{#if todo.isDone }} checked {{/if}} disabled>
-{{ todo.name }}
-</p>
-<a href="/">back</a>
-<a href="/todos/{{ todo._id }}/edit">edit</a>
-<form action="/todos/{{ todo._id }}?_method=DELETE" method="post">
-  <button type="submit">DELETE</button>
-</form>
+<div class="col-auto mt-5" style="background-color: #acafd7;">
+  <form action="/todos/{{ todo._id }}?_method=DELETE" method="POST" style="display: inline;">
+    <div class="input-group">
+      <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" name="isDone" {{#if todo.isDone }} checked {{/if}} disabled>
+      </div>  
+      <input class="form-control" type="text" placeholder="name" name="name" value="{{ todo.name }}" disabled>
+      <a class="btn text-light" href="/todos/{{ todo._id }}/edit" style="background-color:#82a9c9">edit</a>
+      <button class="btn text-light" type="submit" style="background-color:#c98888">delete</button> 
+    </div>
+  </form>
+</div>
+
+<div class="d-flex justify-content-end mt-5">
+  <a class="btn btn-sm text-light" href="/" style="background-color:#a5acbf">back</a>
+</div>
+
