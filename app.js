@@ -13,14 +13,14 @@ require('./config/mongoose')
 
 const usePassport = require('./config/passport')
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 
-app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs'}))
+app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(session({
-  secret: process.env.SESSION_SECRET, 
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))

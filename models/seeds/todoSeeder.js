@@ -7,8 +7,8 @@ const Todo = require('../todo')
 const User = require('../user')
 const db = require('../../config/mongoose')
 const SEED_USER = {
-  name: 'root', 
-  email: 'root@example.com', 
+  name: 'root',
+  email: 'root@example.com',
   password: '12345678'
 }
 
@@ -24,7 +24,7 @@ db.once('open', () => {
     .then(user => {
       const userId = user._id
       return Promise.all(Array.from(
-        { length: 10 }, 
+        { length: 10 },
         (_, i) => Todo.create({ name: `name-${i}`, userId })
       ))
     })
