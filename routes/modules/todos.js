@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return Todo.findOne({ _id, userId})
+  return Todo.findOne({ _id, userId })
     .then(todo => {
       todo.remove()
     })
